@@ -25,6 +25,7 @@ class ValentineHome extends StatefulWidget {
 class _ValentineHomeState extends State<ValentineHome> {
   final List<String> emojiOptions = ['Sweet Heart', 'Party Heart'];
   String selectedEmoji = 'Sweet Heart';
+  double _currentSliderValue = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -41,11 +42,21 @@ class _ValentineHomeState extends State<ValentineHome> {
             onChanged: (value) => setState(() => selectedEmoji = value ?? selectedEmoji),
           ),
           const SizedBox(height: 16),
+          Slider(
+            value: _currentSliderValue,
+            min: -50,
+            max: 50,
+            divisions: 10,
+            onChanged: (value) => setState(() => _currentSliderValue = value),
+          ),
           Expanded(
             child: Center(
               child: CustomPaint(
                 size: const Size(300, 300),
-                painter: HeartEmojiPainter(type: selectedEmoji),
+                painter: HeartEmojiPainter(
+                  type: selectedEmoji,
+                  offsetX: _currentSliderValue,
+                  ),
               ),
             ),
           ),
@@ -56,12 +67,13 @@ class _ValentineHomeState extends State<ValentineHome> {
 }
 
 class HeartEmojiPainter extends CustomPainter {
-  HeartEmojiPainter({required this.type});
+  HeartEmojiPainter({required this.type, required this.offsetX});
   final String type;
+  final double offsetX;
 
   @override
   void paint(Canvas canvas, Size size) {
-    final center = Offset(size.width / 2, size.height / 2);
+    final center = Offset(size.width / 2 + offsetX, size.height / 2);
     final paint = Paint()..style = PaintingStyle.fill;
 
     // Heart base
