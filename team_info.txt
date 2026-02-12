@@ -1,0 +1,4 @@
+GitHub Repository: https://github.com/hien-dao/MobAppDev-Inclass3
+Student 1: Jack Lin
+Student 2: Darin Ward
+Student 3: Hien Dao
