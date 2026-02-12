@@ -31,36 +31,44 @@ class _ValentineHomeState extends State<ValentineHome> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Cupid\'s Canvas')),
-      body: Column(
-        children: [
-          const SizedBox(height: 16),
-          DropdownButton<String>(
-            value: selectedEmoji,
-            items: emojiOptions
-                .map((e) => DropdownMenuItem(value: e, child: Text(e)))
-                .toList(),
-            onChanged: (value) => setState(() => selectedEmoji = value ?? selectedEmoji),
+      body: Container(
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/images/pink_gradient.png'),
+            fit: BoxFit.cover,
           ),
-          const SizedBox(height: 16),
-          Slider(
-            value: _currentSliderValue,
-            min: -50,
-            max: 50,
-            divisions: 10,
-            onChanged: (value) => setState(() => _currentSliderValue = value),
-          ),
-          Expanded(
-            child: Center(
-              child: CustomPaint(
-                size: const Size(300, 300),
-                painter: HeartEmojiPainter(
-                  type: selectedEmoji,
-                  offsetX: _currentSliderValue,
-                  ),
+        ),
+        child: Column(
+          children: [
+            const SizedBox(height: 16),
+            DropdownButton<String>(
+              value: selectedEmoji,
+              items: emojiOptions
+                  .map((e) => DropdownMenuItem(value: e, child: Text(e)))
+                  .toList(),
+              onChanged: (value) => setState(() => selectedEmoji = value ?? selectedEmoji),
+            ),
+            const SizedBox(height: 16),
+            Slider(
+              value: _currentSliderValue,
+              min: -50,
+              max: 50,
+              divisions: 10,
+              onChanged: (value) => setState(() => _currentSliderValue = value),
+            ),
+            Expanded(
+              child: Center(
+                child: CustomPaint(
+                  size: const Size(300, 300),
+                  painter: HeartEmojiPainter(
+                    type: selectedEmoji,
+                    offsetX: _currentSliderValue,
+                    ),
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
