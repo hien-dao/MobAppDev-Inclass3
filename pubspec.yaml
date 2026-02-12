@@ -58,7 +58,8 @@ flutter:
   uses-material-design: true
   # Add this section carefully!
   assets:
-    - assets/images/
+    - assets/images/pink_gradient.avif
+    - assets/images/bg_gradient.jpg
 
   # To add assets to your application, add an assets section, like this:
   # assets:

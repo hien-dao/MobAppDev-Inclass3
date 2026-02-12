@@ -29,16 +29,21 @@ class _ValentineHomeState extends State<ValentineHome> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Cupid\'s Canvas')),
-      body: Container(
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage('assets/images/pink_gradient.png'),
-            fit: BoxFit.cover,
-          ),
+    return Container (
+      decoration: const BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage('assets/images/bg_gradient.jpg'),
+          fit: BoxFit.cover,
         ),
-        child: Column(
+      ),
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        appBar: AppBar(
+          title: const Text('Cupid\'s Canvas'),
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+        ),
+        body: Column(
           children: [
             const SizedBox(height: 16),
             DropdownButton<String>(
@@ -118,5 +123,7 @@ class HeartEmojiPainter extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(covariant HeartEmojiPainter oldDelegate) => oldDelegate.type != type;
+  bool shouldRepaint(covariant HeartEmojiPainter oldDelegate) =>
+    oldDelegate.type != type || oldDelegate.offsetX != offsetX;
+
 }
